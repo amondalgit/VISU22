@@ -1,2 +1,2 @@
-./*.pdf
-./^MDS*.Rmd
+*.pdf
+^MDS*.Rmd

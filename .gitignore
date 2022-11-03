@@ -1,2 +1,5 @@
-*.pdf
+*.tex
+*.log
+*.docx
 ^MDS*.Rmd
+/misc files

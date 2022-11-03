@@ -3,9 +3,9 @@ title: '**Visualisation**: Assignment 1'
 author: 'Name: Adarsha Mondal | Roll Number: MDS202205'
 date: 'Dead Line : 03 Oct 2022'
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
   word_document: default
 ---
 
@@ -15,6 +15,7 @@ library(ggplot2)
 library(gridExtra)
 library(reshape2)
 library(ggpubr)
+library(formatR)
 theme_set(theme_bw())
 ```
 
@@ -63,7 +64,7 @@ theme_set(theme_bw())
 
 -   case 2 c: $\lambda=1.7$, n=300, N=5000
 
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 cumulative_df = data.frame(means = numeric(0), 
                 samp_size = character(0), lambda = character(0))
 
@@ -133,7 +134,7 @@ a)  Draw the time series plot of Quarterly earnings in regular scale and log-sca
 head(JohnsonJohnson)
 ```
 
-```{r}
+```{r  tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 problem_2 = function(){
   jj_earnings_df = data.frame(time = time(JohnsonJohnson), 
                               earnings = JohnsonJohnson)
@@ -186,7 +187,7 @@ a)  Reproduce the same plot using the `ggplot`; while fill each boxes with diffe
 
 b)  In addition draw probability density plot for weights of chicken's growth by each feed seperately using the `ggplot`. Draw this plot seperately.
 
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 problem_3 = function(){
   chickwts_df = data.frame(chickwts)
   
@@ -211,7 +212,8 @@ problem_3 = function(){
                 axis.title.y = element_text(face="bold",size=15),
                 axis.text.x = element_text(angle = -90,face = "bold",size = 10),
                 axis.text.y = element_text(face = "bold",size = 10),
-                legend.position="none")+
+                legend.position="none") +
+          
           labs(title = "Probability of weight of chicks depending on feed",
                x = "Probability Density", 
                y = "Weight(g)"))
@@ -242,7 +244,7 @@ f)  Check which market outperform others during the same time?
 
 Make all your plots using `ggplot`.
 
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 time = data.frame(time = time(EuStockMarkets))
 data = data.frame(EuStockMarkets)
 n = nrow(data)
@@ -274,7 +276,7 @@ dr_melt = melt(cbind(time, dr_df), id = c("time"), value.name = "value")
 ```
 
 a)
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 print(ggplot(pt_melt)+aes(x=time, y=value)+
   geom_line(aes(color=variable),size=1)+
   facet_grid(vars(variable))+
@@ -290,7 +292,7 @@ print(ggplot(pt_melt)+aes(x=time, y=value)+
 ```
 
 b)
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 print(ggplot(dr_melt)+aes(x=time, y=value)+
   geom_line()+
   geom_point(alpha=0.3,aes(colour=value>0))+
@@ -306,7 +308,7 @@ print(ggplot(dr_melt)+aes(x=time, y=value)+
 ```
 
 c)
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 print(ggplot(pt_melt)+aes(x=value)+
   geom_histogram(aes(color=variable),bins=50)+
   facet_grid(vars(variable))+
@@ -323,7 +325,7 @@ print(ggplot(pt_melt)+aes(x=value)+
 ```
 
 d)
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 print(ggplot(dr_melt)+aes(x=value)+
   geom_histogram(aes(color=variable),bins=40)+
   facet_grid(vars(variable))+
@@ -341,7 +343,7 @@ print(ggplot(dr_melt)+aes(x=value)+
 ```
 
 e)
-```{r}
+```{r tidy = TRUE, tidy.opts = list(width.cutoff = 50)}
 print(ggplot(inv_melt, aes(x = time, y = value)) + 
   geom_line(aes(color = variable, linetype = "solid"),size=1)+
   labs(title = 
